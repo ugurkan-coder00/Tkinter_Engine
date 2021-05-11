@@ -1,50 +1,7 @@
 from tkinter import *
 from tkinter import ttk
-
-
-
-
-class main:
-    def __init__(self,title = "Engine",geometry = "700x500",rootColor = "black",defaultColor = "red",defaultName = ""):
-        self.title = title
-        self.geometry = geometry
-        self.rootColor = rootColor
-        self.defaultColor = defaultColor
-        self.defaultName = defaultName
-    def root(self):
-        self.root = Tk()
-        self.root.title(self.title)
-        self.root.geometry(self.geometry)
-        self.root.configure(bg = self.rootColor)
-    def Cube(self):
-        self.kup = Label(self.root,bg = self.defaultColor)
-        self.kup.pack()
-        self.kup.place(height = 40,width = 40)
-    #Command
-    def SaveCommand(self):
-        if self.box.get() == "" or self.box.get() == " ":
-            self.kup.configure(text = self.nameEntry.get(),bg = self.defaultColor,font = ("Times New Roman",10,"bold"))
-        else:
-            self.kup.configure(text = self.nameEntry.get(),bg = self.box.get(),font = ("Times New Roman",10,"bold"))
-    def xx(self,_=None):
-        self.kup.place(x=self.Xayar.get(),y=self.Yayar.get())
-    def yy(self,_=None):
-        self.kup.place(x=self.Xayar.get(),y=self.Yayar.get())
-    #EndCommand
-    def name(self):
-        self.nameText = Label(self.root,text = "Name the cube:",bg = "gray8",fg = "white",font = ("Times New Roman",10,"bold"))
-        self.nameText.pack()
-        self.nameText.place(x = 525,y = 2)
-        self.nameEntry = Entry(self.root,bg = "gray8",fg = "yellow",font = ("Times New Roman",9,"bold"))
-        self.nameEntry.pack()
-        self.nameEntry.place(x = 525,y = 20)
-    def color(self):
-        self.boxText = Label(self.root,text = "Color the cube:",bg = "gray8",fg = "white",font = ("Times New Roman",10,"bold"))
-        self.boxText.pack()
-        self.boxText.place(x=525,y=42)
-        n = StringVar()
-        self.box = ttk.Combobox(self.root, width = 27, textvariable = n)
-        self.box['values'] = ('snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old lace',
+import random
+bruh = ('snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old lace',
         'linen', 'antique white', 'papaya whip', 'blanched almond', 'bisque', 'peach puff',
         'navajo white', 'lemon chiffon', 'mint cream', 'azure', 'alice blue', 'lavender',
         'lavender blush', 'misty rose', 'dark slate gray', 'dim gray', 'slate gray',
@@ -120,6 +77,55 @@ class main:
         'gray75', 'gray76', 'gray77', 'gray78', 'gray79', 'gray80', 'gray81', 'gray82', 'gray83',
         'gray84', 'gray85', 'gray86', 'gray87', 'gray88', 'gray89', 'gray90', 'gray91', 'gray92',
         'gray93', 'gray94', 'gray95', 'gray97', 'gray98', 'gray99')
+
+rand = random.randint(1,437)
+rand2 = random.randint(1,461)
+
+class main:
+    def __init__(self,title = "Engine",geometry = "700x500",rootColor = "black",defaultColor = "red",defaultName = "",createColor = "black"):
+        self.title = title
+        self.geometry = geometry
+        self.rootColor = rootColor
+        self.defaultColor = defaultColor
+        self.defaultName = defaultName
+        self.createColor = createColor
+    def root(self):
+        self.root = Tk()
+        self.root.title(self.title)
+        self.root.geometry(self.geometry)
+        self.root.configure(bg = self.rootColor)
+    def Cube(self):
+        self.kup = Label(self.root,bg = self.defaultColor)
+        self.kup.pack()
+        self.kup.place(height = 40,width = 40)
+    #Command
+    def SaveCommand(self):
+        if self.box.get() == "" or self.box.get() == " ":
+            self.kup.configure(text = "",bg = self.defaultColor,font = ("Times New Roman",10,"bold"))
+        else:
+            self.kup.configure(text = "",bg = self.box.get(),font = ("Times New Roman",10,"bold"))
+        self.label = Label(self.root,text=self.nameEntry.get(),bg = "black",fg = "white",font = ("Times New Roman",13,"bold"))
+        self.label.pack()
+        self.label.place(x = 212,y = 0)
+    def xx(self,_=None):
+        self.kup.place(x=self.Xayar.get(),y=self.Yayar.get())
+    def yy(self,_=None):
+        self.kup.place(x=self.Xayar.get(),y=self.Yayar.get())
+    #EndCommand
+    def name(self):
+        self.nameText = Label(self.root,text = "Project Name:",bg = "gray8",fg = "white",font = ("Times New Roman",10,"bold"))
+        self.nameText.pack()
+        self.nameText.place(x = 525,y = 2)
+        self.nameEntry = Entry(self.root,bg = "gray8",fg = "yellow",font = ("Times New Roman",9,"bold"))
+        self.nameEntry.pack()
+        self.nameEntry.place(x = 525,y = 20)
+    def color(self):
+        self.boxText = Label(self.root,text = "Color the cube:",bg = "gray8",fg = "white",font = ("Times New Roman",10,"bold"))
+        self.boxText.pack()
+        self.boxText.place(x=525,y=42)
+        n = StringVar()
+        self.box = ttk.Combobox(self.root, width = 27, textvariable = n)
+        self.box['values'] = (bruh)
         self.box.pack()
         self.box.place(x=525,y=60,width = 126)
     def panel(self):
@@ -129,14 +135,14 @@ class main:
     def X(self):
         self.Xayar = Scale(self.root,from_=0.0, to=437.0,resolution=1.0,length = 111,fg="white", bg="black",orient = "horizontal",command = self.xx)
         self.Xayar.pack()
-        self.Xayar.place(x=525,y=100,height = 35,width = 126)
+        self.Xayar.place(x=525,y=100,height = 38,width = 126)
         self.XayarText = Label(self.root,text = "X",bg = "gray8",fg = "white",font = ("Times New Roman",9))
         self.XayarText.pack()
         self.XayarText.place(x=580,y=82)
     def Y(self):
         self.Yayar = Scale(self.root,from_=0.0, to=461.0,resolution=1.0,length = 111,fg="white", bg="black",orient = "horizontal",command = self.yy)
         self.Yayar.pack()
-        self.Yayar.place(x=525,y=160,height = 35,width = 126)
+        self.Yayar.place(x=525,y=160,height = 38,width = 126)
         self.YayarText = Label(self.root,text = "Y",bg = "gray8",fg = "white",font = ("Times New Roman",9))
         self.YayarText.pack()
         self.YayarText.place(x=580,y=142)
@@ -148,9 +154,74 @@ class main:
         self.cizgii = Label(self.root,bg = "gray8",fg = "white",text = "-------------------------------------------------------")
         self.cizgii.pack()
         self.cizgii.place(x=475,y=240)
+    def menuBar(self):
+        self.bar = Menu(self.root,bg = "black",fg = "white")
+        self.file = Menu(self.bar,tearoff = False,bg = "red")
+        self.edit = Menu(self.bar,tearoff = False,bg = "red")
+        self.file.add_command(label="Exit",command = self.root.quit)
+        self.edit.add_command(label="Create",command = self.CreateMain)
+        self.edit.add_command(label="Close",command = self.CreateClosing)
+        self.bar.add_cascade(label="File",menu=self.file)
+        self.bar.add_cascade(label="Edit",menu=self.edit)
+        self.root.config(menu=self.bar)
+    #Create Partition
+    def CreateCommandButton(self):
+        self.kup2.configure(bg = self.box2.get())
+        self.kup2.pack()
+        self.kup2.place(x = rand,y = rand2,height = 40,width = 40)
+    def CreateCommandScaleX(self,_=None):
+        self.kup2.place(x = self.Xayar2.get(),y = self.Yayar2.get())
+    def CreateCommandScaleY(self,_=None):
+        self.kup2.place(x = self.Xayar2.get(),y = self.Yayar2.get())
+    #-----------------------------------------
+    def CreateMain(self):
+        self.kup2 = Label(self.root,bg = self.createColor)
+        #-----------------------------------------
+        self.partitionName = Label(self.root,text = "Create",bg = "gray8",fg = "white",font = ("Times New Roman",13,"bold"))
+        self.partitionName.pack()
+        self.partitionName.place(x = 561,y = 252)
+        #-----------------------------------------
+        self.boxText2 = Label(self.root,text = "Color the cube:",bg = "gray8",fg = "white",font = ("Times New Roman",10,"bold"))
+        self.boxText2.pack()
+        self.boxText2.place(x=525,y=278)
+        n2 = StringVar()
+        self.box2 = ttk.Combobox(self.root, width = 27, textvariable = n2)
+        self.box2['values'] = (bruh)
+        self.box2.pack()
+        self.box2.place(x=525,y=298,width = 126)
+        #-----------------------------------------
+        self.Xayar2 = Scale(self.root,from_=0.0, to=437.0,resolution=1.0,length = 111,fg="white", bg="black",orient = "horizontal",command = self.CreateCommandScaleX)
+        self.Xayar2.set(rand)
+        self.Xayar2.pack()
+        self.Xayar2.place(x=525,y=338,height = 38,width = 126)
+        self.XayarText2 = Label(self.root,text = "X",bg = "gray8",fg = "white",font = ("Times New Roman",9))
+        self.XayarText2.pack()
+        self.XayarText2.place(x=580,y=320)
+        #-----------------------------------------
+        self.Yayar2 = Scale(self.root,from_=0.0, to=461.0,resolution=1.0,length = 111,fg="white", bg="black",orient = "horizontal",command = self.CreateCommandScaleY)
+        self.Yayar2.set(rand2)
+        self.Yayar2.pack()
+        self.Yayar2.place(x=525,y=398,height = 38,width = 126)
+        self.YayarText2 = Label(self.root,text = "Y",bg = "gray8",fg = "white",font = ("Times New Roman",9))
+        self.YayarText2.pack()
+        self.YayarText2.place(x=580,y=380)
+        #-----------------------------------------
+        self.save2 = Button(self.root,text = "CREATE",bg = "black",fg = "white",font = ("Times New Roman",9),command = self.CreateCommandButton)
+        self.save2.pack()
+        self.save2.place(x = 552,y = 460)
+    def CreateClosing(self):
+        self.partitionName.destroy()
+        self.box2.destroy()
+        self.boxText2.destroy()
+        self.Xayar2.destroy()
+        self.XayarText2.destroy()
+        self.Yayar2.destroy()
+        self.YayarText2.destroy()
+        self.save2.destroy()
+    #End Partition
     def mainloop(self):
-        self.mainloop = mainloop()    
-
+        self.mainloop = mainloop()
+ 
 classs = main()
 classs.root()
 classs.Cube()
@@ -160,5 +231,6 @@ classs.name()
 classs.X()
 classs.Y()
 classs.cizgi()
+classs.menuBar()
 classs.SaveButton()
 classs.mainloop()
