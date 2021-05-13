@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 import random
+from tkinter import messagebox
+import new
+import about
 bruh = ('snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old lace',
         'linen', 'antique white', 'papaya whip', 'blanched almond', 'bisque', 'peach puff',
         'navajo white', 'lemon chiffon', 'mint cream', 'azure', 'alice blue', 'lavender',
@@ -80,9 +83,69 @@ bruh = ('snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old 
 
 rand = random.randint(1,437)
 rand2 = random.randint(1,461)
+defaultTitle = "New Project"
+
+class startup:
+    def __init__(self,title="Engine",geometry = "300x150",rootColor="black"):
+        self.title = title
+        self.geometry = geometry
+        self.rootColor = rootColor
+    def EventCommand(self,event):
+        if event.char == event.keysym:
+            if event.char == "E" and event.keysym or event.char == "e" and event.keysym:
+                print("Giriş Başarılı")
+                self.root.destroy()
+                classs = main()
+                classs.root()
+                classs.Cube()
+                classs.panel()
+                classs.color()
+                classs.name()
+                classs.X()
+                classs.Y()
+                classs.cizgi()
+                classs.menuBar()
+                classs.SaveButton()
+                classs.on_closing()
+                classs.mainloop()
+    def ButtonCommand(self):
+        self.root.destroy()
+        classs = main()
+        classs.root()
+        classs.Cube()
+        classs.panel()
+        classs.color()
+        classs.name()
+        classs.X()
+        classs.Y()
+        classs.cizgi()
+        classs.menuBar()
+        classs.SaveButton()
+        classs.on_closing()
+        classs.mainloop()
+    def main(self):
+        self.root = Tk()
+        self.root.title(self.title)
+        self.root.geometry(self.geometry)
+        self.root.configure(bg = self.rootColor)
+        self.root.bind_all("<Key>",self.EventCommand)
+        self.text = Label(self.root,text = "ENGİNE",bg = "black",fg="white",font =("Times New Roman",13,"bold"))
+        self.text.pack()
+        self.text.place(x=115,y=0)
+        self.startButton = Button(self.root,text = "START",bg = "black",fg = "white",font = ("Times New Roman",10),command = self.ButtonCommand)
+        self.startButton.pack()
+        self.startButton.place(x = 117,y = 35)
+        self.exitButton = Button(self.root,text = "EXİT",bg = "black",fg = "white",font = ("Times New Roman",10),command=self.root.quit)
+        self.exitButton.pack()
+        self.exitButton.place(x = 117,y = 90,width=70)
+        self.text2 = Label(self.root,text = "Or Press The 'E' key..",bg = "black",fg="white",font =("Times New Roman",10,"bold"))
+        self.text2.pack()
+        self.text2.place(x=92,y=125)
+    def mainloop(self):
+        self.root.mainloop()
 
 class main:
-    def __init__(self,title = "Engine",geometry = "700x500",rootColor = "black",defaultColor = "red",defaultName = "",createColor = "black"):
+    def __init__(self,title = defaultTitle,geometry = "700x500",rootColor = "black",defaultColor = "red",defaultName = "",createColor = "black"):
         self.title = title
         self.geometry = geometry
         self.rootColor = rootColor
@@ -104,9 +167,7 @@ class main:
             self.kup.configure(text = "",bg = self.defaultColor,font = ("Times New Roman",10,"bold"))
         else:
             self.kup.configure(text = "",bg = self.box.get(),font = ("Times New Roman",10,"bold"))
-        self.label = Label(self.root,text=self.nameEntry.get(),bg = "black",fg = "white",font = ("Times New Roman",13,"bold"))
-        self.label.pack()
-        self.label.place(x = 212,y = 0)
+        self.root.title(self.nameEntry.get())
     def xx(self,_=None):
         self.kup.place(x=self.Xayar.get(),y=self.Yayar.get())
     def yy(self,_=None):
@@ -156,9 +217,13 @@ class main:
         self.cizgii.place(x=475,y=240)
     def menuBar(self):
         self.bar = Menu(self.root,bg = "black",fg = "white")
-        self.file = Menu(self.bar,tearoff = False,bg = "red")
-        self.edit = Menu(self.bar,tearoff = False,bg = "red")
+        self.file = Menu(self.bar,tearoff = False,bg = "black",fg = "white")
+        self.edit = Menu(self.bar,tearoff = False,bg = "black",fg = "white")
+        self.classs = new.main()
+        self.file.add_command(label="New Project",command = self.classs.root)
+        self.bruh = about.main()
         self.file.add_command(label="Exit",command = self.root.quit)
+        self.edit.add_command(label="About Engine",command = self.bruh.mainnn)
         self.edit.add_command(label="Create",command = self.CreateMain)
         self.edit.add_command(label="Close",command = self.CreateClosing)
         self.bar.add_cascade(label="File",menu=self.file)
@@ -219,18 +284,14 @@ class main:
         self.YayarText2.destroy()
         self.save2.destroy()
     #End Partition
+    def on_closingCommand(self):
+        if messagebox.askokcancel("Quit","Do you want to quit?"):
+            self.root.destroy()
+    def on_closing(self):
+        self.root.protocol("WM_DELETE_WINDOW",self.on_closingCommand)
     def mainloop(self):
         self.mainloop = mainloop()
- 
-classs = main()
-classs.root()
-classs.Cube()
-classs.panel()
-classs.color()
-classs.name()
-classs.X()
-classs.Y()
-classs.cizgi()
-classs.menuBar()
-classs.SaveButton()
-classs.mainloop()
+
+start = startup()
+start.main()
+start.mainloop()
